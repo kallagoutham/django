@@ -1,0 +1,34 @@
+<!--In order to add we have to load STATIC files-->
+{% extends 'food/base.html' %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template</title>
+    <link rel="stylesheet" type="stylesheet/css" href="{% static 'food.style.css' %}">
+    
+</head>
+<body>
+    {% block body %}
+    {% for item in item_list %}
+        <div class="row mt-2">
+            <div class="col-md-3 offset-md-2">
+                <img height= "150px" src="{{item.item_image}}">
+            </div>
+            <div class="col-md-4">
+                <h3>{{item.item_name}}</h3>
+                <h5>{{item.item_description}}</h5>
+                <h6>$ {{item.item_price}}</h6>
+            </div>
+            <div class="col-md-2">
+                <a href="{% url 'food:details' item.id %}" class="btn btn-success mt-3">Details</a>
+            </div>
+        </div>
+    {% endfor %}
+    {% endblock %}
+</body>
+</html>
